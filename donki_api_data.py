@@ -1,23 +1,22 @@
-"""
-donki_api_module.py - Python module to download data from the NASA DONKI API.
-
-This module provides functions to download data from various endpoints of the NASA DONKI (Space Weather Database of 
-Notifications, Knowledge, Information) API. It retrieves data for specified API endpoints and time range, converts 
-the JSON response to pandas DataFrames, and stores them in a dictionary.
-
-Functions:
-- download_donki_data: Downloads data from multiple API endpoints and returns a dictionary of DataFrame objects.
-
-Usage:
-1. Place this module (donki_api_module.py) in the same directory as your main script.
-2. Import the module and call the download_donki_data function to fetch the data.
-"""
-
 import requests
 import pandas as pd
 
 
 def download_donki_data():
+    """
+    donki_api_module.py - Python module to download data from the NASA DONKI API.
+
+    This module provides functions to download data from various endpoints of the NASA DONKI (Space Weather Database of 
+    Notifications, Knowledge, Information) API. It retrieves data for specified API endpoints and time range, converts 
+    the JSON response to pandas DataFrames, and stores them in a dictionary.
+
+    Functions:
+    - download_donki_data: Downloads data from multiple API endpoints and returns a dictionary of DataFrame objects.
+
+    Usage:
+    1. Place this module (donki_api_module.py) in the same directory as your main script.
+    2. Import the module and call the download_donki_data function to fetch the data.
+    """
     api_endpoints = [
         "CME",
         "CMEAnalysis",
