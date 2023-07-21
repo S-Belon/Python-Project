@@ -1,42 +1,56 @@
 import requests
 import pandas as pd
 
+
 def download_donki_data():
-    # Download all data from the DONKI API endpoint
+    """
+    This function downloads data from multiple endpoints of the NASA DONKI
+    (Space Weather Database of Notifications, Knowledge, Information) API.
 
-    # Define the list of API endpoints
-    api_endpoints = ['CME', 'CMEAnalysis', 'GST', 'IPS', 'FLR', 'SEP', 'MPC', 'RBE', 'HSS']
+    This function retrieves data from various API endpoints within the specified
+    time range and converts the JSON response to pandas DataFrames.
+    The fetched data is stored in a dictionary, where each key represents the API endpoint name, and
+    each value is the corresponding DataFrame containing the API response data.
 
-    # Define the common API parameters
+    Returns:
+    dict: A dictionary containing DataFrames with the API response data for each endpoint.
+
+    Raises:
+    requests.exceptions.Timeout: If a request to the DONKI API times out.
+    """
+    api_endpoints = [
+        "CME",
+        "CMEAnalysis",
+        "GST",
+        "IPS",
+        "FLR",
+        "SEP",
+        "MPC",
+        "RBE",
+        "HSS",
+    ]
     params = {
-        'startDate': '2022-01-01',
-        'endDate': '2022-12-31',
-        'api_key': 'BkLnefy3MaYDPAsNO1vUZxXTepcIjKWPdZzfW2UY'  # Replace with your NASA API key
+        "startDate": "2022-01-01",
+        "endDate": "2022-12-31",
+        "api_key": "BkLnefy3MaYDPAsNO1vUZxXTepcIjKWPdZzfW2UY",
     }
-
-    # Create an empty dictionary to store the DataFrame objects
     data_frames = {}
-
-    # Iterate over the API endpoints and import data into DataFrame objects
+    timeout = 30
     for endpoint in api_endpoints:
-        # Define the API URL
-        url = f'https://api.nasa.gov/DONKI/{endpoint}'
-        
-        # Send GET request to the API
-        response = requests.get(url, params=params)
-        
-        # Check if the request was successful
-        if response.status_code == 200:
-            # Parse the response as JSON
-            data = response.json()
-            
-            # Convert the data into a DataFrame
-            df = pd.DataFrame(data)
-            
-            # Store the DataFrame in the dictionary
-            data_frames[endpoint] = df
-        else:
-            print(f'Error for endpoint {endpoint}:', response.status_code)
+        url = f"https://api.nasa.gov/DONKI/{endpoint}"
 
-    # Return the dictionary of DataFrame objects
+        try:
+            response = requests.get(url, params=params, timeout=timeout)
+
+            if response.status_code == 200:
+                data = response.json()
+
+                df = pd.DataFrame(data)
+
+                data_frames[endpoint] = df
+            else:
+                print(f"Error for endpoint {endpoint}:", response.status_code)
+        except requests.exceptions.Timeout:
+            print(f"Timeout occurred for endpoint {endpoint}")
+
     return data_frames
