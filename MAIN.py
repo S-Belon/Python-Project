@@ -11,6 +11,8 @@ print(data_frames.keys())
 
 flr_df = data_frames['FLR']
 
+print(dir(functions))
+
 print(functions.flr_duration.__doc__)
 functions.flr_duration(flr_df)
 
