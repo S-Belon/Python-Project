@@ -1,6 +1,6 @@
 import pandas as pd
 
-def flr_duration(x):
+def flr_duration(z):
     """
     Calculate the duration of solar flares from the 'FLR' DataFrame.
 
@@ -19,8 +19,9 @@ def flr_duration(x):
     'duration' containing the duration of each solar flare in minutes.
     """
     # Convert the start time and end time columns to datetime format
-    x['beginTime'] = pd.to_datetime(x['beginTime'])
-    x['endTime'] = pd.to_datetime(x['endTime'])
+    z['beginTime'] = pd.to_datetime(z['beginTime'])
+    z['endTime'] = pd.to_datetime(z['endTime'])
 
     # Calculate the duration of solar flares and add a new column
-    x['duration'] = (x['endTime'] - x['beginTime']).dt.total_seconds() / 60
+    z['duration'] = (z['endTime'] - z['beginTime']).dt.total_seconds() / 60
+
