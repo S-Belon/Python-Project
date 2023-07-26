@@ -74,3 +74,11 @@ def flr_class(x):
     plt.ylabel('Frequency')
     plt.title('Bar Chart of Solar Flare Class (Frequency > 2)')
     plt.show()
+
+def hist_CME_speed(x):
+    # Plot the CME speed distribution
+    plt.hist(x['speed'], bins=20)
+    plt.xlabel('CME Speed')
+    plt.ylabel('Frequency')
+    plt.title('Distribution of CME Speed')
+    plt.show()

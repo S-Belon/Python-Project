@@ -22,3 +22,4 @@ cme_df = data_frames['CMEAnalysis']
 
 graphs.flr_hist(flr_df)
 graphs.flr_class(flr_df)
+graphs.hist_CME_speed(cme_df)
