@@ -5,24 +5,46 @@ from datetime import datetime, timedelta
 
 def download_donki_data():
     """
-    donki_api_module.py - Python module to download data from the NASA DONKI API.
+    Download data from the NASA DONKI API for multiple endpoints and time range.
 
-    This module provides functions to download data from various endpoints of the NASA DONKI (Space Weather Database of 
-    Notifications, Knowledge, Information) API. It retrieves data for specified API endpoints and time range, converts 
-    the JSON response to pandas DataFrames, and stores them in a dictionary.
+    This function fetches data from various endpoints of the NASA DONKI (Space Weather Database of 
+    Notifications, Knowledge, Information) API for the last 365 days and converts the JSON response 
+    to pandas DataFrames. The data for specified API endpoints is stored in a dictionary.
 
-    Functions:
-    - download_donki_data: Downloads data from multiple API endpoints and returns a dictionary of DataFrame objects.
+    Returns:
+        dict: A dictionary containing DataFrame objects, where the keys are the API endpoint names,
+              and the values are the corresponding DataFrames.
 
     Usage:
-    1. Place this module (donki_api_module.py) in the same directory as your main script.
-    2. Import the module and call the download_donki_data function to fetch the data.
+        Call this function to fetch and store data from the DONKI API.
+
+    API Endpoints:
+        The function retrieves data for the following API endpoints:
+        - 'CME': Coronal Mass Ejections
+        - 'CMEAnalysis': CME Analysis
+        - 'GST': Geomagnetic Storms
+        - 'IPS': Interplanetary Shocks
+        - 'FLR': Solar Flares
+        - 'SEP': Solar Energetic Particles
+        - 'MPC': Magnetopause Crossing
+        - 'RBE': Radiation Belt Enhancement
+        - 'HSS': High-Speed Streams
+
+    API Parameters:
+        The function uses the following common API parameters:
+        - 'startDate': The start date in the format 'YYYY-MM-DD' (365 days ago from the current date).
+        - 'endDate': The end date in the format 'YYYY-MM-DD' (current date).
+        - 'api_key'
+
+    Example:
+        # Call the function to download the data and store it in a dictionary of DataFrames
+        data_frames = download_donki_data()
     """
     # Define the list of API endpoints
     api_endpoints = ['CME', 'CMEAnalysis', 'GST', 'IPS', 'FLR', 'SEP', 'MPC', 'RBE', 'HSS']
 
     # Define the common API parameters
-    api_key = 'BkLnefy3MaYDPAsNO1vUZxXTepcIjKWPdZzfW2UY'  # Replace with your NASA API key
+    api_key = 'BkLnefy3MaYDPAsNO1vUZxXTepcIjKWPdZzfW2UY'
 
     # Calculate the start and end dates for the last 365 days
     end_date = datetime.now()
