@@ -8,7 +8,6 @@ data_frames = donki_api_data.download_donki_data()
 data_7 = donki_api_data.data_7()
 print(data_frames.keys())
 
-
 flr_df = data_frames['FLR']
 flr_7 = data_7['FLR']
 
@@ -16,13 +15,15 @@ print(functions.flr_duration.__doc__)
 functions.flr_duration(flr_df)
 functions.flr_duration(flr_7)
 
-flr_df['duration'].describe()
-flr_7['duration'].describe()
-
 avrg_365 = flr_df['duration'].mean()
-print("Average:", avrg_365)
-recent_diff = flr_7['duration'].mean() - avrg_365
-print("Diff:", recent_diff)
+avrg_7 = flr_7['duration'].mean()
+duration_diff = avrg_7 - avrg_365 # DASH
+print("Duration Diff:", duration_diff)
+
+count_365 = len(flr_df) / 7
+count_7 = len(flr_7)
+count_diff = count_7 - count_365 # DASH
+print("Count Diff:", count_diff)
 
 cme_df = data_frames['CMEAnalysis']
 
