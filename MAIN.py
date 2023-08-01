@@ -10,11 +10,20 @@ print(data_frames.keys())
 
 
 flr_df = data_frames['FLR']
+flr_7 = data_7['FLR']
 
 print(functions.flr_duration.__doc__)
 functions.flr_duration(flr_df)
+functions.flr_duration(flr_7)
 
 flr_df['duration'].describe()
+flr_7['duration'].describe()
+
+avrg_365 = flr_df['duration'].mean()
+print("Average:", avrg_365)
+recent_diff = flr_7['duration'].mean() - avrg_365
+print("Diff:", recent_diff)
+
 cme_df = data_frames['CMEAnalysis']
 
 
