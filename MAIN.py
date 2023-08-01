@@ -5,6 +5,7 @@ import graphs
 print(donki_api_data.download_donki_data.__doc__)
 # Call the function to download the data and store it in a dictionary of DataFrames
 data_frames = donki_api_data.download_donki_data()
+data_7 = donki_api_data.data_7()
 print(data_frames.keys())
 
 

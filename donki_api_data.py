@@ -86,3 +86,52 @@ def download_donki_data():
         else:
             print(f'Error for endpoint {endpoint}:', response.status_code)
     return data_frames
+
+
+def data_7():
+    # Define the list of API endpoints
+    api_endpoints = ['CME', 'CMEAnalysis', 'GST', 'IPS', 'FLR', 'SEP', 'MPC', 'RBE', 'HSS']
+
+    # Define the common API parameters
+    api_key = 'BkLnefy3MaYDPAsNO1vUZxXTepcIjKWPdZzfW2UY'
+
+    # Calculate the start and end dates for the last 365 days
+    end_date = datetime.now()
+    start_date = end_date - timedelta(days=7)
+
+    # Convert dates to the required format (YYYY-MM-DD)
+    start_date_str = start_date.strftime('%Y-%m-%d')
+    end_date_str = end_date.strftime('%Y-%m-%d')
+
+    # Create an empty dictionary to store the DataFrame objects
+    df_7 = {}
+
+    # Iterate over the API endpoints and import data into DataFrame objects
+    for endpoint in api_endpoints:
+        # Define the API URL with the updated start and end dates
+        url = f'https://api.nasa.gov/DONKI/{endpoint}'
+        params = {
+            'startDate': start_date_str,
+            'endDate': end_date_str,
+            'api_key': api_key
+        }
+    
+        # Send GET request to the API
+        response = requests.get(url, params=params)
+    
+        # Check if the request was successful
+        if response.status_code == 200:
+            try:
+                # Parse the response as JSON
+                data = response.json()
+            
+                # Convert the data into a DataFrame
+                df = pd.DataFrame(data)
+            
+                # Store the DataFrame in the dictionary
+                df_7[endpoint] = df
+            except ValueError as e:
+                print(f'Error parsing JSON for endpoint {endpoint}:', e)
+        else:
+            print(f'Error for endpoint {endpoint}:', response.status_code)
+    return df_7
