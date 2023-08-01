@@ -15,17 +15,23 @@ print(functions.flr_duration.__doc__)
 functions.flr_duration(flr_df)
 functions.flr_duration(flr_7)
 
-avrg_365 = flr_df['duration'].mean()
-avrg_7 = flr_7['duration'].mean()
-duration_diff = avrg_7 - avrg_365 # DASH
+flr_avrg_365 = flr_df['duration'].mean()
+flr_avrg_7 = flr_7['duration'].mean()
+duration_diff = flr_avrg_7 - flr_avrg_365 # DASH
 print("Duration Diff:", duration_diff)
 
-count_365 = len(flr_df) / 7
-count_7 = len(flr_7)
-count_diff = count_7 - count_365 # DASH
+flr_count_365 = len(flr_df) / 7
+flr_count_7 = len(flr_7)
+count_diff = flr_count_7 - flr_count_365 # DASH
 print("Count Diff:", count_diff)
 
 cme_df = data_frames['CMEAnalysis']
+cme_7 = data_7['CMEAnalysis']
+
+cme_avrg_365 = cme_df['speed'].mean()
+cme_avrg_7 = cme_7['speed'].mean()
+speed_diff = cme_avrg_7 - cme_avrg_365 # DASH
+print("Speed Diff:", speed_diff)
 
 
 graphs.flr_hist(flr_df)
