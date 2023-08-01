@@ -82,3 +82,26 @@ def hist_CME_speed(x):
     plt.ylabel('Frequency')
     plt.title('Distribution of CME Speed')
     plt.show()
+
+def flr_class_dist(x):
+    # Assuming you have class_type_counts
+    class_type_counts = x['classType'].value_counts().nlargest(10)
+
+    # Plot the donut chart
+    plt.figure(figsize=(8, 8))  # Set the size of the figure (optional)
+
+    # Create the pie chart
+    plt.pie(class_type_counts, labels=class_type_counts.index, autopct='%1.1f%%', startangle=90)
+
+    # Draw a white circle at the center to create the donut effect
+    centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+    fig = plt.gcf()
+    fig.gca().add_artist(centre_circle)
+
+    # Add a title to the donut chart
+    plt.title("Distribution of classType (Donut Chart)")
+
+    # Display the donut chart
+    plt.axis('equal')
+    plt.tight_layout()
+    plt.show()

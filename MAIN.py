@@ -37,3 +37,4 @@ print("Speed Diff:", speed_diff)
 graphs.flr_hist(flr_df)
 graphs.flr_class(flr_df)
 graphs.hist_CME_speed(cme_df)
+graphs.flr_class_dist(flr_7) # DASH
