@@ -89,6 +89,46 @@ def download_donki_data():
 
 
 def data_7():
+    """
+    Fetch data from the NASA DONKI API for multiple endpoints in the last 7 days.
+
+    This function fetches data from various endpoints of the NASA DONKI (Space Weather Database of 
+    Notifications, Knowledge, Information) API for the last 7 days and converts the JSON response 
+    to pandas DataFrames. The data for specified API endpoints is stored in a dictionary.
+
+    Returns:
+        dict: A dictionary containing DataFrame objects, where the keys are the API endpoint names,
+              and the values are the corresponding DataFrames containing data from the last 7 days.
+
+    Usage:
+        Call this function to fetch and store data from the DONKI API for the last 7 days.
+
+    API Endpoints:
+        The function retrieves data for the following API endpoints:
+        - 'CME': Coronal Mass Ejections
+        - 'CMEAnalysis': CME Analysis
+        - 'GST': Geomagnetic Storms
+        - 'IPS': Interplanetary Shocks
+        - 'FLR': Solar Flares
+        - 'SEP': Solar Energetic Particles
+        - 'MPC': Magnetopause Crossing
+        - 'RBE': Radiation Belt Enhancement
+        - 'HSS': High-Speed Streams
+
+    API Parameters:
+        The function uses the following common API parameters:
+        - 'startDate': The start date in the format 'YYYY-MM-DD' (7 days ago from the current date).
+        - 'endDate': The end date in the format 'YYYY-MM-DD' (current date).
+        - 'api_key'
+
+    Returns:
+        dict: A dictionary containing DataFrame objects, where the keys are the API endpoint names,
+              and the values are the corresponding DataFrames containing data from the last 7 days.
+
+    Example:
+        # Call the function to fetch the last 7 days data and store it in a dictionary of DataFrames
+        data_frames_last_7_days = fetch_last_7_days_data()
+    """
     # Define the list of API endpoints
     api_endpoints = ['CME', 'CMEAnalysis', 'GST', 'IPS', 'FLR', 'SEP', 'MPC', 'RBE', 'HSS']
 
