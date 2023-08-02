@@ -105,3 +105,35 @@ def flr_class_dist(x):
     plt.axis('equal')
     plt.tight_layout()
     plt.show()
+
+def ts_halfangle(x):
+    # Plot the time series for halfAngle, latitude, and longitude
+    plt.figure(figsize=(12, 6))
+    plt.plot(x['time21_5'], x['halfAngle'], marker='o', linestyle='-', color='g', label='Half Angle')
+    plt.plot(x['time21_5'], x['latitude'], marker='o', linestyle='-', color='r', label='Latitude')
+    plt.plot(x['time21_5'], x['longitude'], marker='o', linestyle='-', color='purple',    label='Longitude')
+
+    plt.xlabel('Date')
+    plt.ylabel('Value')
+    plt.title('Time Series of Half Angle, Latitude, and Longitude')
+    plt.xticks(rotation=45)
+    plt.grid(True)
+    plt.legend()
+    plt.tight_layout()
+
+    # Show the plot
+    plt.show()
+
+def ts_speed(x):
+    # Plot the time series
+    plt.figure(figsize=(12, 6))
+    plt.plot(x['time21_5'], x['speed'], marker='o', linestyle='-', color='b')
+    plt.xlabel('Date')
+    plt.ylabel('Speed')
+    plt.title('Time Series of Speed')
+    plt.xticks(rotation=45)
+    plt.grid(True)
+    plt.tight_layout()
+
+    # Show the plot
+    plt.show()

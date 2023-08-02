@@ -33,8 +33,11 @@ cme_avrg_7 = cme_7['speed'].mean()
 speed_diff = cme_avrg_7 - cme_avrg_365 # DASH
 print("Speed Diff:", speed_diff)
 
+weekly_averages = functions.weekly_averages(cme_df)
 
 graphs.flr_hist(flr_df)
 graphs.flr_class(flr_df)
 graphs.hist_CME_speed(cme_df)
 graphs.flr_class_dist(flr_7) # DASH
+graphs.ts_halfangle(weekly_averages) # DASH
+graphs.ts_speed(weekly_averages) # DASH
