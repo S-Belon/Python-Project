@@ -41,4 +41,4 @@ graphs.hist_CME_speed(cme_df)
 graphs.flr_class_dist(flr_7) # DASH
 graphs.ts_halfangle(weekly_averages) # DASH
 graphs.ts_speed(weekly_averages) # DASH
-graphs.heat_map(cme_df)
+graphs.heat_map(cme_df) # DASH
