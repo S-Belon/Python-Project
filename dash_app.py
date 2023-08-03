@@ -1,6 +1,7 @@
 import streamlit as st
 import MAIN
 import graphs
+import donki_api_data
 
 st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
@@ -29,7 +30,7 @@ st.markdown('### Metrics')
 col1, col2, col3 = st.columns(3)
 col1.metric("Solar Flare Duration", MAIN.flr_avrg_7, MAIN.duration_diff)
 col2.metric("Solar Flare Count", MAIN.flr_count_7, MAIN.count_diff)
-col3.metric("CME Speed", MAIN.cme_7, MAIN.speed_diff)
+col3.metric("CME Speed", MAIN.cme_avrg_7, MAIN.speed_diff)
 
 # Row B
 c1, c2 = st.columns((7,3))
