@@ -5,9 +5,11 @@ Functions:
 - flr_hist(x): Create a histogram of solar flare duration without outliers.
 
 """
-import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
+import streamlit as st
+
 
 def flr_hist(x):
     """
@@ -106,7 +108,7 @@ def flr_class_dist(x):
     # Display the donut chart
     plt.axis('equal')
     plt.tight_layout()
-    plt.show()
+    st.pyplot(plt)
 
 def ts_halfangle(x):
     # Plot the time series for halfAngle, latitude, and longitude
@@ -124,7 +126,7 @@ def ts_halfangle(x):
     plt.tight_layout()
 
     # Show the plot
-    plt.show()
+    st.pyplot(plt)
 
 def ts_speed(x):
     # Plot the time series
@@ -137,37 +139,29 @@ def ts_speed(x):
     plt.grid(True)
     plt.tight_layout()
 
-    # Show the plot
-    plt.show()
+    # Convert the plot to a Streamlit-friendly format and display it
+    st.pyplot(plt)
 
 def heat_map(x):
     # Assuming cme_df is your DataFrame and time21_5 column is already converted to datetime format
     x['time21_5'] = pd.to_datetime(x['time21_5'])
-
     # Bin the time21_5 column into 12 bins representing 12 weeks
     x['time21_5_bin'] = pd.cut(x['time21_5'], bins=12)
-
     # Map the day of the week to the corresponding integer value (0 - Monday, 1 - Tuesday, ..., 6 - Sunday)
     x['day_of_week'] = x['time21_5'].dt.dayofweek + 1  # Adjust day_of_week from 0-based to 1-based
-
     # Pivot the DataFrame to get the heatmap data
     heatmap_data = x.pivot_table(index='day_of_week', columns='time21_5_bin', values='speed', aggfunc='mean')
-
     # Convert Interval objects to strings for xticklabels
     heatmap_data.columns = heatmap_data.columns.astype(str)
-
     # Create the heatmap
     plt.figure(figsize=(12, 6))
     sns.heatmap(heatmap_data, cmap='YlGnBu')
-
     # Customize x-axis and y-axis tick labels
     plt.xticks(range(1, 13), range(1, 13))
     plt.yticks(range(1, 8), range(1, 8))
-
     # Add labels and title
     plt.xlabel('Time')
     plt.ylabel('Day of the Week')
     plt.title('Heatmap of Speed (Average) by Month and Day of the Week')
-
-    # Show the plot
-    plt.show()
+    # Convert the plot to a Streamlit-friendly format and display it
+    st.pyplot(plt)
