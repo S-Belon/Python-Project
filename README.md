@@ -1,19 +1,66 @@
-# Python-Project
+# Space Weather Dashboard
+A Streamlit-based dashboard that provides insights into space weather using data from NASA's API. The dashboard focuses on daily updates about solar activities such as solar flares and provides comparison between recent data and weekly averages over the past 365 days. 
 
-## Abstract
+## Features
+- **Daily Updates**: The dashboard is designed to change daily, pulling data from the last 365 days.
+- **7-day Comparison**: Compare the most recent 7 days of data with the weekly average of the past 365 days.
+- **Histogram**: View a histogram that illustrates the distribution of the number of events per month.
+- **Modular Design**: Code is structured using modules for better organization.
 
-## Table of contents
+## Installation
+1. Clone the repository.
+2. Install the required packages using:
+   ```
+   pip install -r requirements.txt
+   ```
+3. Run the main script to start the Streamlit server:
+   ```
+   streamlit run main.py
+   ```
 
-1. [Prerequisits](#Prerequisits)
-2. [Introduction](#Introduction)
-3. [Authors](#Authors)
+## Usage
+Navigate to the URL provided by Streamlit (usually `http://localhost:8501`) in your browser to access the dashboard.
 
-## Prerequisits
 
-## Introduction
+sanderbelon/Rafiga
+├── data
+│   ├── donki_api_data.py
+├── src
+│   ├── dash_app.py
+│   ├── functions.py
+│   ├── graphs.py  
+├── eval
+│   ├── README.md
+├── docs
+│   ├── README.md
+├── LICENSE
+├── requirements.txt
+├── .gitignore
+└── README.md
 
-We will analyze the space weather data from NASA and try to run a regression to find the correlation between each element. Then we can conduct a prediction of when the next event such as solar flares will take place and for how long they will last. Hopefully this will give us a result and some kind of measurement of predicting the upcoming events
+## Contributing
+- **Sander Belon**: Responsible for connecting the data to the dashboard and building the analysis tools.
+- **Rafiga**: Responsible for the README file and other documentation.
 
-## Authors
-Mammadyrova Rafiga
-Belon Sander
+## Requirements
+- Python 3.7 or higher
+- Streamlit
+- Any other specific packages or libraries used
+
+## Known Issues
+- README file is still being finalized.
+- Integration of some examples into MAIN.py is in progress.
+
+## Grading Criteria
+The final project will be assessed based on the following criteria:
+- **Runability**: The code should execute without errors.
+- **Organization**: The code and project files should be well-organized.
+- **Appearance**: The dashboard should be visually appealing.
+- **Added Value**: The insights provided by the dashboard should be valuable and informative.
+- **Understanding of Course Materials**: The project should illustrate a clear grasp of the materials covered in the course.
+
+## License
+MIT
+
+`
+
