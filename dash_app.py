@@ -10,14 +10,14 @@ Author:
     Sander Belon
 """
 import streamlit as st
-import MAIN
-import graphs
 
-# Call st.set_page_config() only once and as the first Streamlit command
 st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
 with open('style.css', encoding='utf-8') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+import MAIN
+import graphs
 
 st.sidebar.header('Dashboard `Space Weather`')
 
@@ -47,7 +47,7 @@ col3.metric("CME Speed", MAIN.cme_avrg_7, MAIN.speed_diff)
 c1, c2 = st.columns((7,3))
 with c1:
     st.markdown('### Heatmap')
-    graphs.heat_map(MAIN.cme_df) 
+    graphs.heat_map(MAIN.cme_df)
 with c2:
     st.markdown('### Donut chart')
     graphs.flr_class_dist(MAIN.flr_7)
@@ -56,4 +56,3 @@ with c2:
 st.markdown('### Line chart')
 graphs.ts_halfangle(MAIN.weekly_averages)
 graphs.ts_speed(MAIN.weekly_averages)
-
