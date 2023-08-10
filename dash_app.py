@@ -1,16 +1,28 @@
+"""
+Streamlit Dashboard App for Space Weather
+
+This script creates a Streamlit dashboard app for visualizing space weather data.
+
+Usage:
+    Run this script using 'streamlit run dash_app.py' in the terminal.
+
+Author:
+    Sander Belon
+"""
 import streamlit as st
 import MAIN
 import graphs
 
+# Call st.set_page_config() only once and as the first Streamlit command
 st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
-with open('style.css') as f:
+with open('style.css', encoding='utf-8') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 st.sidebar.header('Dashboard `Space Weather`')
 
 st.sidebar.subheader('Heat map parameter')
-time_hist_color = st.sidebar.selectbox('Color by', ('speed', 'longitude', 'latitude')) 
+time_hist_color = st.sidebar.selectbox('Color by', ('speed', 'longitude', 'latitude'))
 
 st.sidebar.subheader('Donut chart parameter')
 donut_theta = st.sidebar.selectbox('Select data', ('Class Type', 'x'))
