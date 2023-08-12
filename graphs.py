@@ -1,10 +1,3 @@
-"""
-This module provides functions for visualizing the space weather data.
-
-Functions:
-- flr_hist(x): Create a histogram of solar flare duration without outliers.
-
-"""
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -13,22 +6,13 @@ import streamlit as st
 
 def flr_hist(x):
     """
-    Create a histogram of solar flare duration without outliers.
+    Generate a histogram depicting the distribution of solar flare durations.
 
-    This function takes a DataFrame 'x' containing information about solar flares,
-    and it calculates the range of solar flare duration without outliers using
-    quantiles (1st and 99th percentile). Then, it creates a histogram to visualize
-    the distribution of solar flare durations without including the outliers.
+    This function calculates the range of solar flare durations without outliers and plots
+    a histogram to visualize their distribution.
 
-    Parameters:
-    x (pandas.DataFrame): A DataFrame containing solar flare information.
-
-    Returns:
-    None (The function displays the histogram plot).
-
-    Example:
-    flr_hist(data_frame)
-
+    Args:
+        x (pandas.DataFrame): The input DataFrame containing solar flare data.
     """
     # Calculate the range of solar flare duration without outliers
     lower_bound = x['duration'].quantile(0.01)
@@ -43,30 +27,13 @@ def flr_hist(x):
 
 def flr_class(x):
     """
-    Create a bar chart of solar flare class frequencies.
+    Generate a bar chart illustrating the distribution of solar flare classes.
 
-    This function takes a DataFrame 'x' containing information about solar flares,
-    and it filters the DataFrame to include only rows with 'classType' values that
-    occur more than 2 times. Then, it creates a bar chart to visualize the frequency
-    distribution of solar flare classes with frequencies greater than 2.
+    This function filters the input DataFrame to include only rows with 'classType' values
+    that occur more than 2 times and then plots a bar chart to visualize the distribution.
 
-    Parameters:
-    x (pandas.DataFrame): A DataFrame containing solar flare information.
-
-    Returns:
-    None (The function displays the bar chart plot).
-
-    Example:
-    flr_class(data_frame)
-
-    Notes:
-    - The 'classType' column in the DataFrame 'x' must contain categorical values
-      representing solar flare classes.
-    - The bar chart displays the frequency distribution of solar flare classes
-      that occur more than 2 times.
-    - The x-axis represents the solar flare classes, and the y-axis represents
-      the frequency count for each class.
-
+    Args:
+        x (pandas.DataFrame): The input DataFrame containing solar flare data.
     """
     # Filter the DataFrame to include only rows with 'classType' values that occur more than 2 times
     class_counts = x['classType'].value_counts()
@@ -80,6 +47,14 @@ def flr_class(x):
     plt.show()
 
 def hist_CME_speed(x):
+    """
+    Generate a histogram depicting the distribution of Coronal Mass Ejection (CME) speeds.
+
+    This function plots a histogram to visualize the distribution of CME speeds.
+
+    Args:
+        x (pandas.DataFrame): The input DataFrame containing CME speed data.
+    """
     # Plot the CME speed distribution
     plt.hist(x['speed'], bins=20)
     plt.xlabel('CME Speed')
@@ -88,6 +63,14 @@ def hist_CME_speed(x):
     plt.show()
 
 def flr_class_dist(x):
+    """
+    Generate a donut chart illustrating the distribution of solar flare class types.
+
+    This function generates a donut chart to visualize the distribution of the top 10 solar flare class types.
+
+    Args:
+        x (pandas.DataFrame): The input DataFrame containing solar flare data.
+    """
     # Assuming you have class_type_counts
     class_type_counts = x['classType'].value_counts().nlargest(10)
 
@@ -111,6 +94,15 @@ def flr_class_dist(x):
     st.pyplot(plt)
 
 def ts_halfangle(x):
+    """
+    Generate a time series plot for Half Angle, Latitude, and Longitude.
+
+    This function generates a time series plot to visualize the changes in Half Angle, Latitude,
+    and Longitude over time.
+
+    Args:
+        x (pandas.DataFrame): The input DataFrame containing relevant time series data.
+    """
     # Plot the time series for halfAngle, latitude, and longitude
     plt.figure(figsize=(12, 6))
     plt.plot(x['time21_5'], x['halfAngle'], marker='o', linestyle='-', color='g', label='Half Angle')
@@ -129,6 +121,14 @@ def ts_halfangle(x):
     st.pyplot(plt)
 
 def ts_speed(x):
+    """
+    Generate a time series plot for CME Speed.
+
+    This function generates a time series plot to visualize the changes in CME Speed over time.
+
+    Args:
+        x (pandas.DataFrame): The input DataFrame containing CME speed time series data.
+    """
     # Plot the time series
     plt.figure(figsize=(12, 6))
     plt.plot(x['time21_5'], x['speed'], marker='o', linestyle='-', color='b')
@@ -143,6 +143,14 @@ def ts_speed(x):
     st.pyplot(plt)
 
 def heat_map(x):
+    """
+    Generate a heatmap depicting the average CME Speed by day of the week and month.
+
+    This function generates a heatmap to visualize the average CME Speed by day of the week and month.
+
+    Args:
+        x (pandas.DataFrame): The input DataFrame containing CME speed and time data.
+    """
     # Assuming cme_df is your DataFrame and time21_5 column is already converted to datetime format
     x['time21_5'] = pd.to_datetime(x['time21_5'])
     # Bin the time21_5 column into 12 bins representing 12 weeks
