@@ -1,35 +1,15 @@
-"""
-Module: solar_flare_module
-
-This module provides a function to calculate the duration of solar flares from the 'FLR' DataFrame.
-
-Functions:
-- flr_duration(z): Calculate the duration of solar flares and add a new column 'duration' to the DataFrame.
-
-"""
 import pandas as pd
 
 def flr_duration(z):
     """
-    Convert start time and end time columns to datetime format and calculate solar flare duration.
+    Calculate the duration of solar flares and add a new column.
 
-    This function takes a DataFrame 'z' containing solar flare information and assumes that the
-    'beginTime' and 'endTime' columns are present in the DataFrame. It converts these columns to
-    datetime format using pandas' pd.to_datetime() function. Then, it calculates the duration of
-    each solar flare and adds a new column 'duration' to the DataFrame.
+    This function converts the start time and end time columns to datetime format,
+    calculates the duration of solar flares, and adds a new 'duration' column to the DataFrame.
 
-    Parameters:
-    z (pandas.DataFrame): The DataFrame containing solar flare information.
-
-    Returns:
-    None: The function modifies the DataFrame 'z' in-place, adding the 'duration' column.
-
-    Example:
-    If 'z' DataFrame has columns ['beginTime', 'endTime'], the function will add a new column
-    'duration' containing the duration of each solar flare in minutes.
-
+    Args:
+        z (pandas.DataFrame): The input DataFrame containing solar flare data.
     """
-    
     # Convert the start time and end time columns to datetime format
     z['beginTime'] = pd.to_datetime(z['beginTime'])
     z['endTime'] = pd.to_datetime(z['endTime'])
@@ -38,6 +18,19 @@ def flr_duration(z):
     z['duration'] = (z['endTime'] - z['beginTime']).dt.total_seconds() / 60
 
 def weekly_averages(x):
+    """
+    Calculate weekly averages for various parameters related to solar activities.
+
+    This function groups the input DataFrame by intervals of 52 weeks and calculates weekly averages
+    for various parameters related to solar activities. It then returns a new DataFrame containing
+    the calculated weekly averages.
+
+    Args:
+        x (pandas.DataFrame): The input DataFrame containing solar activity data.
+
+    Returns:
+        pandas.DataFrame: A new DataFrame containing calculated weekly averages.
+    """
     # Assuming cme_df is your DataFrame and time21_5 column is already converted to datetime format
     x['time21_5'] = pd.to_datetime(x['time21_5'])
 
