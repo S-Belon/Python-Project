@@ -2,3 +2,4 @@ streamlit
 matplotlib.pyplot
 seaborn
 pandas
+python-dotenv
