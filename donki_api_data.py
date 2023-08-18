@@ -33,6 +33,10 @@ Author:
 from datetime import datetime, timedelta
 import requests
 import pandas as pd
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def download_donki_data():
     """
@@ -75,7 +79,7 @@ def download_donki_data():
     api_endpoints = ['CME', 'CMEAnalysis', 'GST', 'IPS', 'FLR', 'SEP', 'MPC', 'RBE', 'HSS']
 
     # Define the common API parameters
-    api_key = 'BkLnefy3MaYDPAsNO1vUZxXTepcIjKWPdZzfW2UY'
+    api_key = os.getenv("api_key")
 
     # Calculate the start and end dates for the last 365 days
     end_date = datetime.now()
@@ -164,7 +168,7 @@ def data_7():
     api_endpoints = ['CME', 'CMEAnalysis', 'GST', 'IPS', 'FLR', 'SEP', 'MPC', 'RBE', 'HSS']
 
     # Define the common API parameters
-    api_key = 'BkLnefy3MaYDPAsNO1vUZxXTepcIjKWPdZzfW2UY'
+    api_key = os.getenv("api_key")
 
     # Calculate the start and end dates for the last 365 days
     end_date = datetime.now()
