@@ -3,3 +3,5 @@ matplotlib.pyplot
 seaborn
 pandas
 python-dotenv
+datetime
+requests
