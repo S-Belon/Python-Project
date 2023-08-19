@@ -21,7 +21,7 @@ A Streamlit-based dashboard that provides insights into space weather using data
 ## Usage
 Navigate to the URL provided by Streamlit (usually `http://localhost:8501`) in your browser to access the dashboard.
 
-
+```
 sanderbelon/Rafiga
 ├── data
 │   ├── donki_api_data.py
@@ -37,6 +37,7 @@ sanderbelon/Rafiga
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+```
 
 ## Contributing
 - **Sander Belon**: Responsible for connecting the data to the dashboard and building the analysis tools.
