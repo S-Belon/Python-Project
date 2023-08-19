@@ -13,7 +13,12 @@ A Streamlit-based dashboard that provides insights into space weather using data
    ```
    pip install -r requirements.txt
    ```
-3. Run the main script to start the Streamlit server:
+3. Create a private key for using the NASA API [here](https://api.nasa.gov/).
+4. In the cloned repository create a ``` .env ```. In this file you ought to store the your obtained API key as follows:
+   ```
+   api_key=YOUR_API_KEY
+   ```
+5. Run the main script to start the Streamlit server:
    ```
    streamlit run main.py
    ```
