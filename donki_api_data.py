@@ -76,7 +76,7 @@ def download_donki_data():
         data_frames = download_donki_data()
     """
     # Define the list of API endpoints
-    api_endpoints = ['CME', 'CMEAnalysis', 'GST', 'IPS', 'FLR', 'SEP', 'MPC', 'RBE', 'HSS']
+    api_endpoints = ['CME', 'CMEAnalysis', 'FLR']
 
     # Define the common API parameters
     api_key = os.getenv("api_key")
@@ -165,7 +165,7 @@ def data_7():
         data_frames_last_7_days = fetch_last_7_days_data()
     """
     # Define the list of API endpoints
-    api_endpoints = ['CME', 'CMEAnalysis', 'GST', 'IPS', 'FLR', 'SEP', 'MPC', 'RBE', 'HSS']
+    api_endpoints = ['CME', 'CMEAnalysis', 'FLR']
 
     # Define the common API parameters
     api_key = os.getenv("api_key")

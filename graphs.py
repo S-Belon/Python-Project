@@ -101,22 +101,27 @@ def ts_halfangle(x):
     Args:
         x (pandas.DataFrame): The input DataFrame containing relevant time series data.
     """
+    # Create a Matplotlib figure
+    fig, ax = plt.subplots(figsize=(12, 6))
+    
     # Plot the time series for halfAngle, latitude, and longitude
-    plt.figure(figsize=(12, 6))
-    plt.plot(x['time21_5'], x['halfAngle'], marker='o', linestyle='-', color='g', label='Half Angle')
-    plt.plot(x['time21_5'], x['latitude'], marker='o', linestyle='-', color='r', label='Latitude')
-    plt.plot(x['time21_5'], x['longitude'], marker='o', linestyle='-', color='purple',    label='Longitude')
+    ax.plot(x['time21_5'], x['halfAngle'], marker='o', linestyle='-', color='g', label='Half Angle')
+    ax.plot(x['time21_5'], x['latitude'], marker='o', linestyle='-', color='r', label='Latitude')
+    ax.plot(x['time21_5'], x['longitude'], marker='o', linestyle='-', color='purple', label='Longitude')
 
-    plt.xlabel('Date')
-    plt.ylabel('Value')
-    plt.title('Time Series of Half Angle, Latitude, and Longitude')
-    plt.xticks(rotation=45)
-    plt.grid(True)
-    plt.legend()
+    ax.set_xlabel('Date')
+    ax.set_ylabel('Value')
+    ax.set_title('Time Series of Half Angle, Latitude, and Longitude')
+    
+    # Set the tick labels on the x-axis with rotation
+    ax.set_xticklabels(x['time21_5'], rotation=45)
+    
+    ax.grid(True)
+    ax.legend()
     plt.tight_layout()
 
-    # Show the plot
-    return plt 
+    # Return the Matplotlib figure
+    return fig
 
 def ts_speed(x):
     """
@@ -127,20 +132,25 @@ def ts_speed(x):
     Args:
         x (pandas.DataFrame): The input DataFrame containing CME speed time series data.
     """
+    # Create a Matplotlib figure
+    fig, ax = plt.subplots(figsize=(12, 6))
+    
     # Plot the time series
-    plt.figure(figsize=(12, 6))
-    plt.plot(x['time21_5'], x['speed'], marker='o', linestyle='-', color='b')
-    plt.xlabel('Date')
-    plt.ylabel('Speed')
-    plt.title('Time Series of Speed')
-    plt.xticks(rotation=45)
-    plt.grid(True)
+    ax.plot(x['time21_5'], x['speed'], marker='o', linestyle='-', color='b')
+    ax.set_xlabel('Date')
+    ax.set_ylabel('Speed')
+    ax.set_title('Time Series of Speed')
+    
+    # Set the tick labels on the x-axis with rotation
+    ax.set_xticklabels(x['time21_5'], rotation=45)
+    
+    ax.grid(True)
     plt.tight_layout()
 
-    # Convert the plot to a Streamlit-friendly format and display it
-    return plt 
+    # Return the Matplotlib figure
+    return fig
 
-def heat_map(x):
+def heat_map(x, color_by):
     """
     Generate a heatmap depicting the average CME Speed by day of the week and month.
 
@@ -148,26 +158,44 @@ def heat_map(x):
 
     Args:
         x (pandas.DataFrame): The input DataFrame containing CME speed and time data.
+        color_by (str): The selected value to use for coloring the heatmap.
     """
-    # Assuming cme_df is your DataFrame and time21_5 column is already converted to datetime format
+    # Convert time21_5 column to datetime format
     x['time21_5'] = pd.to_datetime(x['time21_5'])
+    
     # Bin the time21_5 column into 12 bins representing 12 weeks
     x['time21_5_bin'] = pd.cut(x['time21_5'], bins=12)
+    
     # Map the day of the week to the corresponding integer value (0 - Monday, 1 - Tuesday, ..., 6 - Sunday)
     x['day_of_week'] = x['time21_5'].dt.dayofweek + 1  # Adjust day_of_week from 0-based to 1-based
+    
+    # Determine which column to use for coloring based on the selected value
+    if color_by == 'speed':
+        color_column = 'speed'
+    elif color_by == 'longitude':
+        color_column = 'longitude'
+    elif color_by == 'latitude':
+        color_column = 'latitude'
+    
     # Pivot the DataFrame to get the heatmap data
-    heatmap_data = x.pivot_table(index='day_of_week', columns='time21_5_bin', values='speed', aggfunc='mean')
+    heatmap_data = x.pivot_table(index='day_of_week', columns='time21_5_bin', values=color_column, aggfunc='mean')
+    
     # Convert Interval objects to strings for xticklabels
     heatmap_data.columns = heatmap_data.columns.astype(str)
+    
     # Create the heatmap
     plt.figure(figsize=(12, 6))
     sns.heatmap(heatmap_data, cmap='YlGnBu')
+    
     # Customize x-axis and y-axis tick labels
     plt.xticks(range(1, 13), range(1, 13))
     plt.yticks(range(1, 8), range(1, 8))
+    
     # Add labels and title
     plt.xlabel('Time')
     plt.ylabel('Day of the Week')
-    plt.title('Heatmap of Speed (Average) by Month and Day of the Week')
-    # Convert the plot to a Streamlit-friendly format and display it
-    return plt 
+    plt.title(f'Heatmap of {color_by.capitalize()} (Average) by Month and Day of the Week')
+    
+    # Convert the plot to a Streamlit-friendly format and return it
+    plt.tight_layout()
+    return plt
