@@ -1,8 +1,6 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import streamlit as st
-
 
 def flr_hist(x):
     """
@@ -91,7 +89,7 @@ def flr_class_dist(x):
     # Display the donut chart
     plt.axis('equal')
     plt.tight_layout()
-    st.pyplot(plt)
+    return plt 
 
 def ts_halfangle(x):
     """
@@ -118,7 +116,7 @@ def ts_halfangle(x):
     plt.tight_layout()
 
     # Show the plot
-    st.pyplot(plt)
+    return plt 
 
 def ts_speed(x):
     """
@@ -140,7 +138,7 @@ def ts_speed(x):
     plt.tight_layout()
 
     # Convert the plot to a Streamlit-friendly format and display it
-    st.pyplot(plt)
+    return plt 
 
 def heat_map(x):
     """
@@ -172,4 +170,4 @@ def heat_map(x):
     plt.ylabel('Day of the Week')
     plt.title('Heatmap of Speed (Average) by Month and Day of the Week')
     # Convert the plot to a Streamlit-friendly format and display it
-    st.pyplot(plt)
+    return plt 
