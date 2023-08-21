@@ -2,13 +2,16 @@ import pandas as pd
 
 def flr_duration(z):
     """
-    Calculate the duration of solar flares and add a new column.
+    Calculate the duration of solar flares.
 
-    This function converts the start time and end time columns to datetime format,
-    calculates the duration of solar flares, and adds a new 'duration' column to the DataFrame.
+    This function calculates the duration of solar flares based on the provided start time
+    and end time columns in the DataFrame.
 
     Args:
-        z (pandas.DataFrame): The input DataFrame containing solar flare data.
+        z (pandas.DataFrame): The input DataFrame containing solar flare data with start and end times.
+
+    Returns:
+        None. The function adds a 'duration' column to the DataFrame with the calculated durations in minutes.
     """
     # Convert the start time and end time columns to datetime format
     z['beginTime'] = pd.to_datetime(z['beginTime'])
@@ -19,17 +22,16 @@ def flr_duration(z):
 
 def weekly_averages(x):
     """
-    Calculate weekly averages for various parameters related to solar activities.
+    Calculate weekly averages of space weather data.
 
-    This function groups the input DataFrame by intervals of 52 weeks and calculates weekly averages
-    for various parameters related to solar activities. It then returns a new DataFrame containing
-    the calculated weekly averages.
+    This function calculates weekly averages of various space weather data including speed, half angle,
+    latitude, longitude, and more. It groups the data by a weekly interval and aggregates the data points.
 
     Args:
-        x (pandas.DataFrame): The input DataFrame containing solar activity data.
+        x (pandas.DataFrame): The input DataFrame containing space weather data with a time column.
 
     Returns:
-        pandas.DataFrame: A new DataFrame containing calculated weekly averages.
+        pandas.DataFrame: A DataFrame containing weekly averages of the specified space weather data.
     """
     # Assuming cme_df is your DataFrame and time21_5 column is already converted to datetime format
     x['time21_5'] = pd.to_datetime(x['time21_5'])

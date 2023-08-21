@@ -1,35 +1,3 @@
-"""
-Fetch Space Weather Data from NASA DONKI API
-
-This script fetches data from various endpoints of the NASA DONKI (Space Weather Database of 
-Notifications, Knowledge, Information) API for the last 365 days and converts the JSON response 
-to pandas DataFrames. The data for specified API endpoints is stored in a dictionary.
-
-Usage:
-    Call the functions in this script to fetch and store data from the DONKI API.
-
-API Endpoints:
-    The functions in this script retrieve data for the following API endpoints:
-    - 'CME': Coronal Mass Ejections
-    - 'CMEAnalysis': CME Analysis
-    - 'GST': Geomagnetic Storms
-    - 'IPS': Interplanetary Shocks
-    - 'FLR': Solar Flares
-    - 'SEP': Solar Energetic Particles
-    - 'MPC': Magnetopause Crossing
-    - 'RBE': Radiation Belt Enhancement
-    - 'HSS': High-Speed Streams
-
-API Parameters:
-    The functions use the following common API parameters:
-    - 'startDate': The start date in the format 'YYYY-MM-DD' (365 days ago from the current date).
-    - 'endDate': The end date in the format 'YYYY-MM-DD' (current date).
-    - 'api_key'
-
-Author:
-    Your Name
-
-"""
 from datetime import datetime, timedelta
 import requests
 import pandas as pd
@@ -40,40 +8,13 @@ load_dotenv()
 
 def download_donki_data():
     """
-    Download data from the NASA DONKI API for multiple endpoints and time range.
+    Download space weather data from NASA's DONKI API.
 
-    This function fetches data from various endpoints of the NASA DONKI (Space Weather Database of 
-    Notifications, Knowledge, Information) API for the last 365 days and converts the JSON response 
-    to pandas DataFrames. The data for specified API endpoints is stored in a dictionary.
+    This function downloads space weather data from the DONKI API for the last 365 days
+    and returns the data in the form of DataFrame objects.
 
     Returns:
-        dict: A dictionary containing DataFrame objects, where the keys are the API endpoint names,
-              and the values are the corresponding DataFrames.
-
-    Usage:
-        Call this function to fetch and store data from the DONKI API.
-
-    API Endpoints:
-        The function retrieves data for the following API endpoints:
-        - 'CME': Coronal Mass Ejections
-        - 'CMEAnalysis': CME Analysis
-        - 'GST': Geomagnetic Storms
-        - 'IPS': Interplanetary Shocks
-        - 'FLR': Solar Flares
-        - 'SEP': Solar Energetic Particles
-        - 'MPC': Magnetopause Crossing
-        - 'RBE': Radiation Belt Enhancement
-        - 'HSS': High-Speed Streams
-
-    API Parameters:
-        The function uses the following common API parameters:
-        - 'startDate': The start date in the format 'YYYY-MM-DD' (365 days ago from the current date).
-        - 'endDate': The end date in the format 'YYYY-MM-DD' (current date).
-        - 'api_key'
-
-    Example:
-        # Call the function to download the data and store it in a dictionary of DataFrames
-        data_frames = download_donki_data()
+        dict: A dictionary containing DataFrame objects for different types of space weather data.
     """
     # Define the list of API endpoints
     api_endpoints = ['CME', 'CMEAnalysis', 'FLR']
@@ -125,44 +66,13 @@ def download_donki_data():
 
 def data_7():
     """
-    Fetch data from the NASA DONKI API for multiple endpoints in the last 7 days.
+    Download space weather data from NASA's DONKI API for the last 7 days.
 
-    This function fetches data from various endpoints of the NASA DONKI (Space Weather Database of 
-    Notifications, Knowledge, Information) API for the last 7 days and converts the JSON response 
-    to pandas DataFrames. The data for specified API endpoints is stored in a dictionary.
-
-    Returns:
-        dict: A dictionary containing DataFrame objects, where the keys are the API endpoint names,
-              and the values are the corresponding DataFrames containing data from the last 7 days.
-
-    Usage:
-        Call this function to fetch and store data from the DONKI API for the last 7 days.
-
-    API Endpoints:
-        The function retrieves data for the following API endpoints:
-        - 'CME': Coronal Mass Ejections
-        - 'CMEAnalysis': CME Analysis
-        - 'GST': Geomagnetic Storms
-        - 'IPS': Interplanetary Shocks
-        - 'FLR': Solar Flares
-        - 'SEP': Solar Energetic Particles
-        - 'MPC': Magnetopause Crossing
-        - 'RBE': Radiation Belt Enhancement
-        - 'HSS': High-Speed Streams
-
-    API Parameters:
-        The function uses the following common API parameters:
-        - 'startDate': The start date in the format 'YYYY-MM-DD' (7 days ago from the current date).
-        - 'endDate': The end date in the format 'YYYY-MM-DD' (current date).
-        - 'api_key'
+    This function downloads space weather data from the DONKI API for the last 7 days
+    and returns the data in the form of DataFrame objects.
 
     Returns:
-        dict: A dictionary containing DataFrame objects, where the keys are the API endpoint names,
-              and the values are the corresponding DataFrames containing data from the last 7 days.
-
-    Example:
-        # Call the function to fetch the last 7 days data and store it in a dictionary of DataFrames
-        data_frames_last_7_days = fetch_last_7_days_data()
+        dict: A dictionary containing DataFrame objects for different types of space weather data.
     """
     # Define the list of API endpoints
     api_endpoints = ['CME', 'CMEAnalysis', 'FLR']

@@ -4,13 +4,13 @@ import matplotlib.pyplot as plt
 
 def flr_hist(x):
     """
-    Generate a histogram depicting the distribution of solar flare durations.
-
-    This function calculates the range of solar flare durations without outliers and plots
-    a histogram to visualize their distribution.
+    Create a histogram of solar flare duration without outliers.
 
     Args:
-        x (pandas.DataFrame): The input DataFrame containing solar flare data.
+        x (pandas.DataFrame): The input DataFrame containing solar flare duration data.
+
+    Returns:
+        None. Displays the histogram.
     """
     # Calculate the range of solar flare duration without outliers
     lower_bound = x['duration'].quantile(0.01)
@@ -25,13 +25,13 @@ def flr_hist(x):
 
 def flr_class(x):
     """
-    Generate a bar chart illustrating the distribution of solar flare classes.
-
-    This function filters the input DataFrame to include only rows with 'classType' values
-    that occur more than 2 times and then plots a bar chart to visualize the distribution.
+    Create a bar chart of solar flare classes.
 
     Args:
-        x (pandas.DataFrame): The input DataFrame containing solar flare data.
+        x (pandas.DataFrame): The input DataFrame containing solar flare class data.
+
+    Returns:
+        None. Displays the bar chart.
     """
     # Filter the DataFrame to include only rows with 'classType' values that occur more than 2 times
     class_counts = x['classType'].value_counts()
@@ -46,12 +46,13 @@ def flr_class(x):
 
 def hist_CME_speed(x):
     """
-    Generate a histogram depicting the distribution of Coronal Mass Ejection (CME) speeds.
-
-    This function plots a histogram to visualize the distribution of CME speeds.
+    Create a histogram of CME speeds.
 
     Args:
         x (pandas.DataFrame): The input DataFrame containing CME speed data.
+
+    Returns:
+        None. Displays the histogram.
     """
     # Plot the CME speed distribution
     plt.hist(x['speed'], bins=20)
@@ -62,12 +63,13 @@ def hist_CME_speed(x):
 
 def flr_class_dist(x):
     """
-    Generate a donut chart illustrating the distribution of solar flare class types.
-
-    This function generates a donut chart to visualize the distribution of the top 10 solar flare class types.
+    Create a donut chart of solar flare class distribution.
 
     Args:
-        x (pandas.DataFrame): The input DataFrame containing solar flare data.
+        x (pandas.DataFrame): The input DataFrame containing solar flare class distribution data.
+
+    Returns:
+        matplotlib.figure.Figure: The Matplotlib figure containing the donut chart.
     """
     # Assuming you have class_type_counts
     class_type_counts = x['classType'].value_counts().nlargest(10)
@@ -93,13 +95,13 @@ def flr_class_dist(x):
 
 def ts_halfangle(x):
     """
-    Generate a time series plot for Half Angle, Latitude, and Longitude.
-
-    This function generates a time series plot to visualize the changes in Half Angle, Latitude,
-    and Longitude over time.
+    Create a time series plot for Half Angle, Latitude, and Longitude.
 
     Args:
-        x (pandas.DataFrame): The input DataFrame containing relevant time series data.
+        x (pandas.DataFrame): The input DataFrame containing time series data.
+
+    Returns:
+        matplotlib.figure.Figure: The Matplotlib figure containing the time series plot.
     """
     # Create a Matplotlib figure
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -125,12 +127,13 @@ def ts_halfangle(x):
 
 def ts_speed(x):
     """
-    Generate a time series plot for CME Speed.
-
-    This function generates a time series plot to visualize the changes in CME Speed over time.
+    Create a time series plot for CME Speed.
 
     Args:
-        x (pandas.DataFrame): The input DataFrame containing CME speed time series data.
+        x (pandas.DataFrame): The input DataFrame containing time series data.
+
+    Returns:
+        matplotlib.figure.Figure: The Matplotlib figure containing the time series plot.
     """
     # Create a Matplotlib figure
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -152,13 +155,17 @@ def ts_speed(x):
 
 def heat_map(x, color_by):
     """
-    Generate a heatmap depicting the average CME Speed by day of the week and month.
+    Generate a heatmap depicting the average values based on the selected color_by parameter.
 
-    This function generates a heatmap to visualize the average CME Speed by day of the week and month.
+    This function generates a heatmap to visualize the average values based on the selected color_by parameter.
+    The heatmap is organized by day of the week and month, displaying the average values of the selected parameter.
 
     Args:
-        x (pandas.DataFrame): The input DataFrame containing CME speed and time data.
-        color_by (str): The selected value to use for coloring the heatmap.
+        x (pandas.DataFrame): The input DataFrame containing time series data.
+        color_by (str): The selected parameter to use for coloring the heatmap.
+
+    Returns:
+        matplotlib.figure.Figure: The Matplotlib figure containing the heatmap.
     """
     # Convert time21_5 column to datetime format
     x['time21_5'] = pd.to_datetime(x['time21_5'])
