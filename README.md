@@ -21,6 +21,7 @@ A Streamlit-based dashboard that provides insights into space weather using data
    ```
    streamlit run dash_app.py
    ```
+   (Please mote that running the dashboard may take a couple of minutes)
 
 ## Usage
 Navigate to the URL provided by Streamlit (usually `http://localhost:8501`) in your browser to access the dashboard.
