@@ -116,7 +116,9 @@ def ts_halfangle(x):
     ax.set_title('Time Series of Half Angle, Latitude, and Longitude')
     
     # Set the tick labels on the x-axis with rotation
-    ax.set_xticklabels(x['time21_5'], rotation=45)
+    x_ticks = pd.date_range(x['time21_5'].min(), x['time21_5'].max(), freq='MS')  # Create monthly tick positions
+    ax.set_xticks(x_ticks)
+    ax.set_xticklabels(x_ticks.strftime('%Y-%m'), rotation=45)  # Format tick labels as 'YYYY-MM'
     
     ax.grid(True)
     ax.legend()
@@ -145,7 +147,9 @@ def ts_speed(x):
     ax.set_title('Time Series of Speed')
     
     # Set the tick labels on the x-axis with rotation
-    ax.set_xticklabels(x['time21_5'], rotation=45)
+    x_ticks = pd.date_range(x['time21_5'].min(), x['time21_5'].max(), freq='MS')  # Create monthly tick positions
+    ax.set_xticks(x_ticks)
+    ax.set_xticklabels(x_ticks.strftime('%Y-%m'), rotation=45)  # Format tick labels as 'YYYY-MM'
     
     ax.grid(True)
     plt.tight_layout()
